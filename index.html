@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenCircuit - Simulador de Electrónica y Arduino</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #f8fafc; height: 100vh; overflow: hidden; }
+    #app { display: grid; grid-template-rows: 52px 1fr; height: 100vh; }
+
+    /* Toolbar */
+    .toolbar { display: flex; align-items: center; gap: 14px; padding: 0 16px; background: #1e293b; border-bottom: 1px solid #334155; height: 52px; }
+    .brand { font-weight: 700; font-size: 1.05rem; color: #38bdf8; margin-right: 8px; }
+    .btn-group { display: flex; align-items: center; gap: 6px; padding-right: 12px; border-right: 1px solid #334155; }
+    .btn { background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 0.82rem; }
+    .btn:hover:not(:disabled) { background: #475569; }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-primary { background: #16a34a; border-color: #15803d; }
+    .btn-primary:hover:not(:disabled) { background: #15803d; }
+    .btn-danger { background: #dc2626; border-color: #b91c1c; }
+    .color-swatches { display: flex; gap: 5px; }
+    .swatch { width: 18px; height: 18px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; }
+    .swatch.active { border-color: #38bdf8; transform: scale(1.15); }
+    .select-input { background: #0f172a; color: #f8fafc; border: 1px solid #475569; padding: 5px 8px; border-radius: 5px; font-size: 0.82rem; }
+
+    /* Workspace Layout */
+    .main-grid { display: grid; grid-template-columns: 220px 1fr 370px; height: calc(100vh - 52px); }
+    .left-panel { background: #1e293b; border-right: 1px solid #334155; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 18px; }
+    .sidebar-section h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 10px; }
+    .palette-grid { display: flex; flex-direction: column; gap: 8px; }
+    .palette-item { display: flex; justify-content: space-between; align-items: center; background: #0f172a; border: 1px solid #334155; color: #f8fafc; padding: 9px 10px; border-radius: 6px; cursor: pointer; text-align: left; }
+    .palette-item:hover { border-color: #38bdf8; }
+    .palette-item small { color: #64748b; font-size: 0.72rem; }
+    .inspector-box { background: #0f172a; border: 1px solid #334155; border-radius: 6px; padding: 10px; font-size: 0.82rem; }
+    .control-row { display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
+    .muted { color: #64748b; font-size: 0.78rem; }
+
+    /* Center Canvas */
+    #canvas-container { position: relative; overflow: hidden; background: #1e293b; }
+
+    /* Right Panel: Editor + Serial */
+    .right-panel { display: grid; grid-template-rows: 1fr 200px; background: #0f172a; border-left: 1px solid #334155; }
+    .editor-pane { display: flex; flex-direction: column; }
+    .editor-header, .serial-header { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; background: #1e293b; border-bottom: 1px solid #334155; font-size: 0.8rem; color: #cbd5e1; }
+    #code-textarea { flex: 1; background: #0b1120; color: #e2e8f0; border: none; padding: 12px; font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 0.85rem; line-height: 1.45; resize: none; outline: none; }
+    .serial-pane { display: flex; flex-direction: column; border-top: 1px solid #334155; }
+    .serial-console { flex: 1; padding: 10px; font-family: monospace; font-size: 0.8rem; color: #4ade80; overflow-y: auto; white-space: pre-wrap; }
+    .btn-xs { background: #334155; color: #e2e8f0; border: none; padding: 3px 8px; border-radius: 4px; cursor: pointer; font-size: 0.72rem; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header id="toolbar-container"></header>
+    <main class="main-grid">
+      <aside id="palette-container" class="left-panel"></aside>
+      <section id="canvas-container"></section>
+      <aside class="right-panel">
+        <div id="editor-container" class="editor-pane"></div>
+        <div id="serial-container" class="serial-pane"></div>
+      </aside>
+    </main>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

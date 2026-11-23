@@ -1,0 +1,14 @@
+{
+  "name": "opencircuit",
+  "version": "0.1.0",
+  "description": "Simulador educativo interactivo de circuitos electrÃ³nicos y Arduino UNO",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
